@@ -7,7 +7,7 @@ class Date {
     private val currentDateInGregorian = LocalDateTime.now()
     private val formatter = DateTimeFormatter.BASIC_ISO_DATE
     private val formatted =currentDateInGregorian.format(formatter).toInt()
-    /**Due to our need for 3 separate value for converting function,
+    /**Due to our need for 3 separate values for converter function,
     *We will parse the formatted date ,
     *That is like :"20220903" to year = 2022 , month = 9 , day =3*/
     private val year = formatted/10000
