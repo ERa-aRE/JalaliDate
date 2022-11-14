@@ -2,10 +2,7 @@ package com.example.jalalidate
 
 import android.widget.TextClock
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,27 +13,41 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 
 @Composable
-fun ShowDate(timeCapsule: IntArray, modifier: Modifier = Modifier) {
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .padding(24.dp),
+fun ShowDate(timeCapsule: TimeCapsule, modifier: Modifier = Modifier) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            ,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "${timeCapsule[0]}/${timeCapsule[1]}/${timeCapsule[2]}", fontSize = 30.sp, modifier = modifier)
+        Text(
+            text = "${timeCapsule.todayInJalali[0]}/${timeCapsule.todayInJalali[1]}/${timeCapsule.todayInJalali[2]}",
+            fontSize = 30.sp,
+            modifier = modifier
+        )
+        Spacer(modifier = Modifier.padding(8.dp))
+        Text(
+            text = "${timeCapsule.todayIntGregory[2]}/${timeCapsule.todayIntGregory[1]}/${timeCapsule.todayIntGregory[0]}",
+            fontSize = 30.sp,
+            modifier = modifier
+        )
+        Spacer(modifier = Modifier.padding(8.dp))
         AndroidView(modifier = Modifier
-            .background(color = Color.Gray
+            .background(
+                color = Color.Gray
             ),
-            // on below line we are initializing our text clock.
+            // on the line below we initialize our text clock.
             factory = { context ->
                 TextClock(context).apply {
                     // on below line we are setting 12 hour format.
-                    format24Hour?.let { this.format24Hour = "hh:mm:ss a " }
+                    format12Hour?.let { this.format12Hour = "hh:mm:ss a " }
                     // on below line we are setting time zone.
                     timeZone?.let { this.timeZone = it }
                     // on below line we are setting text size.
-                    textSize.let { this.textSize = 30f }
+                    textSize.let { this.textSize = 25f }
                 }
             })
+
     }
 }

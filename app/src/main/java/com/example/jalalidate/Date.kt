@@ -14,6 +14,7 @@ class Date {
     private val month = formatted/100 - year*100
     private val day = formatted-(formatted/100)*100
     val todayInJalali=gregorianToJalali(year,month,day)
+    val todayInGregory = intArrayOf(year,month,day)
     /**In the next variable you have the time of the day base on your timezone , but that is static
      * , i've added a dynamic clock to the ShowDate composable, but if you need to add a time field to your for example docs or
      * your database , here you have it */
